@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform _centerTransform;
+    [SerializeField] private List<float> _spawnPosX;
+
+    private void Awake()
     {
-        
+        transform.localPosition = Vector3.right * _spawnPosX[Random.Range(0, _spawnPosX.Count)];
+        _centerTransform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 37) * 10f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ScoreAdded()
     {
-        
+        Destroy(_centerTransform.gameObject);
     }
 }
